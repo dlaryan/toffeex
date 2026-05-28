@@ -1,0 +1,5 @@
+# Toffee Extractor - Dependencies
+# Python 3.8+ required
+
+# No external packages needed - uses built-in libraries only
+# Standard library: urllib.request, urllib.error, json, ssl, gzip, time, datetime, concurrent.futures
