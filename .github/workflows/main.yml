@@ -19,7 +19,7 @@ jobs:
         python-version: '3.x'
 
     - name: Run Script
-      run: python toffee.py
+      run: python toffee_extractor.py
 
     - name: Commit and Push Changes
       run: |
