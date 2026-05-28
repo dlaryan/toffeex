@@ -1,0 +1,29 @@
+name: Auto Update Toffee Playlist
+
+on:
+  schedule:
+    - cron: '0 */5 * * *' # প্রতি ৫ ঘণ্টা পর পর অটো রান হবে
+  workflow_dispatch: # ম্যানুয়ালি রান করার বাটন
+
+jobs:
+  run-scrp:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
+
+    - name: Run Script
+      run: python toffee.py
+
+    - name: Commit and Push Changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add toffee_playlist.json toffee_playlist.m3u
+        git diff --quiet && git diff --staged --quiet || (git commit -m "Auto Update: $(date)" && git push)
